@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,6 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('threads', ThreadController::class);
+Route::resource('threads.replies', ReplyController::class);
 
 require __DIR__.'/auth.php';
