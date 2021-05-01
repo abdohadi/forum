@@ -6,16 +6,12 @@ use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Tests\DatabaseTest;
 
-class ParticipateInThreadsTest extends TestCase
+class ParticipateInThreadsTest extends DatabaseTest
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->withoutExceptionHandling();
-    }
+    use RefreshDatabase;
+    
     /** @test */
     public function an_unauthenticated_user_may_not_add_replies_to_a_thread()
     {

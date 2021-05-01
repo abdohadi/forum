@@ -26,8 +26,8 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form method="POST" action="{{ route('threads.replies.store', $thread->id) }}">
                     @csrf
-                    <textarea class="w-full border-gray-300 rounded mb-4 focus:border-blue-100" name="body" placeholder="Have something to say?" rows="5"></textarea>
-                    <button class="bg-white py-2 px-5 border-gray-300 border rounded-2xl text-gray-600 hover:text-gray-400" type="submit">Add Reply</button>
+                    <textarea class="form-input" name="body" placeholder="Have something to say?" rows="5"></textarea>
+                    <button class="white-btn" type="submit">Add Reply</button>
                 </form>
             </div>
         </div>

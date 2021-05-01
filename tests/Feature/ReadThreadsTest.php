@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\DatabaseTest;
 
-class ReadThreadsTest extends TestCase
+class ReadThreadsTest extends DatabaseTest
 {
     use RefreshDatabase;
     
