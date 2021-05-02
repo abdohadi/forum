@@ -14,11 +14,12 @@ class CreateThreadsTest extends DatabaseTest
     /** @test */
     public function guests_may_not_create_threads()
     {   
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-        
-        $thread = Thread::factory()->make();
+        $this->withExceptionHandling()
+             ->get(route('threads.create'))
+             ->assertRedirect('login');
 
-        $this->post(route('threads.store'), $thread->toArray());
+        $this->post(route('threads.store'))
+             ->assertRedirect('login');
     }
 
     /** @test */
@@ -40,7 +41,7 @@ class CreateThreadsTest extends DatabaseTest
 
         $this->post(route('threads.store'), $thread->toArray());
 
-        $this->get(route('threads.show', 1))
+        $this->get(route('threads.show', [$thread->channel, 1]))
              ->assertSee($thread->title)
              ->assertSee($thread->body);
     }

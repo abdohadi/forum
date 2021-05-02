@@ -23,8 +23,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
-Route::resource('threads', ThreadController::class);
+Route::get('threads/{channel:slug}/{thread}', [ThreadController::class, 'show'])->name('threads.show');
+Route::resource('threads', ThreadController::class)->except('show');
 Route::resource('threads.replies', ReplyController::class);
 
 require __DIR__.'/auth.php';

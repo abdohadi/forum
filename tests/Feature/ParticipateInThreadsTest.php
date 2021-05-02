@@ -15,11 +15,11 @@ class ParticipateInThreadsTest extends DatabaseTest
     /** @test */
     public function an_unauthenticated_user_may_not_add_replies_to_a_thread()
     {
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-
         $thread = Thread::factory()->create();
             
-        $this->post(route('threads.replies.store', $thread->id), []);
+        $this->withExceptionHandling()
+             ->post(route('threads.replies.store', $thread), [])
+             ->assertRedirect('login');
     }
 
     /** @test */
@@ -29,9 +29,9 @@ class ParticipateInThreadsTest extends DatabaseTest
         $thread = Thread::factory()->create();
         $reply = Reply::factory()->make();
 
-        $this->post(route('threads.replies.store', $thread->id), $reply->toArray());
+        $this->post(route('threads.replies.store', $thread), $reply->toArray());
 
-        $this->get(route('threads.show', $thread->id))
+        $this->get(route('threads.show', [$thread->channel, $thread]))
              ->assertSee($reply->body);
     }
 }

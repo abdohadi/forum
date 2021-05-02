@@ -30,7 +30,7 @@ class ReadThreadsTest extends DatabaseTest
     /** @test */
     public function a_user_can_view_a_single_thread()
     {
-        $this->get(route('threads.show', $this->thread))
+        $this->get(route('threads.show', [$this->thread->channel, $this->thread]))
              ->assertSee($this->thread->title);
     }
 
@@ -39,7 +39,7 @@ class ReadThreadsTest extends DatabaseTest
     {
         $reply = Reply::factory()->create(['thread_id' => $this->thread->id]);
 
-        $this->get(route('threads.show', $this->thread->id))
+        $this->get(route('threads.show', [$this->thread->channel, $this->thread]))
              ->assertSee($reply->body);
     }
 }

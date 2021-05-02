@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,21 +12,26 @@ class Thread extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'body'];
+    protected $fillable = ['user_id', 'channel_id', 'title', 'body'];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function replies()
     {
     	return $this->hasMany(Reply::class);
     }
 
-    public function addReply($reply)
+    public function channel()
     {
-    	$this->replies()->create($reply);
+        return $this->belongsTo(Channel::class);
     }
 
-    public function creator()
+    public function addReply($reply)
     {
-    	return $this->belongsTo(User::class, 'user_id');
+        $this->replies()->create($reply);
     }
 }
 

@@ -9,8 +9,6 @@ use Tests\DatabaseTest;
 
 class ThreadTest extends DatabaseTest
 {
-    use RefreshDatabase;
-
     protected $thread;
 
     public function setUp(): void
@@ -32,6 +30,12 @@ class ThreadTest extends DatabaseTest
     public function it_has_a_creator()
     {	
     	$this->assertInstanceOf('App\Models\User', $this->thread->creator);	
+    }
+
+    /** @test */
+    public function it_belongs_to_a_chanel()
+    {
+        $this->assertInstanceOf('App\Models\Channel', $this->thread->channel);
     }
 
     /** @test */

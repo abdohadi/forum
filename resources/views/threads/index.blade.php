@@ -12,7 +12,7 @@
                     @foreach ($threads as $thread)
                         <article class="py-4">
                             <h3 class="font-bold text-lg mb-2 text-blue-400">
-                                <a href="{{ route('threads.show', $thread) }}">{{ $thread->title }}</a>
+                                <a href="{{ route('threads.show', [$thread->channel, $thread]) }}">{{ $thread->title }}</a>
                             </h3>
                             <div>{{ $thread->body }}</div>
                         </article>
