@@ -26,5 +26,6 @@ Route::get('/dashboard', function () {
 Route::get('threads/{channel:slug}/{thread}', [ThreadController::class, 'show'])->name('threads.show');
 Route::resource('threads', ThreadController::class)->except('show');
 Route::resource('threads.replies', ReplyController::class);
+Route::get('threads/{channel:slug}', [ThreadController::class, 'index'])->name('threads.channel');
 
 require __DIR__.'/auth.php';

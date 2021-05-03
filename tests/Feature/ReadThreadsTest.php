@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -39,5 +40,17 @@ class ReadThreadsTest extends DatabaseTest
 
         $this->get(route('threads.show', [$this->thread->channel, $this->thread]))
              ->assertSee($reply->body);
+    }
+
+    /** @test */
+    public function a_user_can_view_all_threads_related_to_a_channel()
+    {
+        $channel = Channel::factory()->create();
+        $threadInChannel = Thread::factory()->create(['channel_id' => $channel->id]);
+        $threadNotInChannel = Thread::factory()->create();
+        
+        $this->get(route('threads.channel', $channel))
+             ->assertSee($threadInChannel->title)
+             ->assertDontSee($threadNotInChannel->title);
     }
 }
