@@ -9,8 +9,6 @@ use Tests\DatabaseTest;
 
 class ReadThreadsTest extends DatabaseTest
 {
-    use RefreshDatabase;
-    
     protected $thread;
 
     public function setUp(): void

@@ -10,8 +10,6 @@ use Tests\DatabaseTest;
 
 class ParticipateInThreadsTest extends DatabaseTest
 {
-    use RefreshDatabase;
-    
     /** @test */
     public function an_unauthenticated_user_may_not_add_replies_to_a_thread()
     {
@@ -33,5 +31,17 @@ class ParticipateInThreadsTest extends DatabaseTest
 
         $this->get(route('threads.show', [$thread->channel, $thread]))
              ->assertSee($reply->body);
+    }
+
+    /** @test */
+    public function a_reply_requires_a_body()
+    {
+        $this->withExceptionHandling()->signIn();
+        
+        $thread = Thread::factory()->create();
+        $reply = Reply::factory()->make(['body' => null]);
+        
+        $this->post(route('threads.replies.store', $thread), $reply->toArray())
+            ->assertSessionHasErrors('body');
     }
 }
