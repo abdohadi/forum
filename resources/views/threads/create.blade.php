@@ -12,14 +12,34 @@
                     <form action="{{ route('threads.store') }}" method="POST">
                         @csrf
                         <div>
-                            <label for="title">Title:</label>
-                            <input type="text" name="title" id="title" class="form-input">
+                            <label for="channel">Choose Channel:</label>
+                            <select name="channel_id" class="form-input" required>
+                                <option value="">Choose One...</option>
+                                @foreach ($channels as $channel)
+                                    <option value="{{ $channel->id }}" {{ $channel->id == old('channel_id') ? 'sellected' : '' }}>{{ $channel->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+
+                        <div>
+                            <label for="title">Title:</label>
+                            <input type="text" name="title" id="title" class="form-input" value="{{ old('title') }}" required>
+                        </div>
+
                         <div>
                             <label for="body">Body:</label>
-                            <textarea id="body" name="body" rows="7" class="form-input"></textarea>
+                            <textarea id="body" name="body" rows="7" class="form-input" required>{{ old('body') }}</textarea>
                         </div>
+
                         <button type="submit" class="white-btn">Publish</button>
+
+                        @if ($errors->count())
+                            <ul class="ul-errors">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </form>
                 </div>
             </div>

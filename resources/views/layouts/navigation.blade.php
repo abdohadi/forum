@@ -13,12 +13,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('threads.index')" :active="request()->routeIs('threads.index')">
                         {{ __('Threads') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('threads.create')" :active="request()->routeIs('threads.create')">
+                        {{ __('New Thread') }}
                     </x-nav-link>
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -37,7 +37,7 @@
 
                             <x-slot name="content">
                                 <ul class="py-2 px-4">
-                                    @foreach (\App\Models\Channel::latest()->get() as $channel)
+                                    @foreach ($channels as $channel)
                                         <li class="py-1">
                                             <x-nav-link :href="route('threads.channel', $channel)" :active="url()->current() == route('threads.channel', $channel)"
                                                 class="text-lg">

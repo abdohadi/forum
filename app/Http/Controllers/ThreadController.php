@@ -51,6 +51,8 @@ class ThreadController extends Controller
             'title' => 'required',
             'body' => 'required',
             'channel_id' => 'required|exists:channels,id'
+        ], [], [
+            'channel_id' => 'channel'
         ]);
 
         $thread = Thread::create([
