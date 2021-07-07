@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,9 @@ Route::get('/', function () {
 
 Route::get('threads/{channel:slug}/{thread}', [ThreadController::class, 'show'])->name('threads.show');
 Route::resource('threads', ThreadController::class)->except('show');
-Route::resource('threads.replies', ReplyController::class);
 Route::get('threads/{channel:slug}', [ThreadController::class, 'index'])->name('threads.channel');
+
+Route::resource('threads.replies', ReplyController::class);
+Route::post('replies/{reply}/favorite', [FavoriteController::class, 'store'])->name('replies.favorite');
 
 require __DIR__.'/auth.php';
