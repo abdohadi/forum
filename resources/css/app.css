@@ -15,3 +15,7 @@
 .ul-errors {
 	@apply mt-5 bg-red-300 text-red-900 py-3 px-8;
 }
+
+a {
+	@apply text-blue-400
+}

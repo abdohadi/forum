@@ -14,6 +14,15 @@ class Thread extends Model
 
     protected $fillable = ['user_id', 'channel_id', 'title', 'body'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('replyCount', function ($builder) {
+            $builder->withCount('replies');
+        });
+    }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_id');

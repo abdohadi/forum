@@ -32138,6 +32138,11 @@ select {
   color: rgba(127, 29, 29, var(--tw-text-opacity));
 }
 
+a {
+  --tw-text-opacity: 1;
+  color: rgba(96, 165, 250, var(--tw-text-opacity))
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
