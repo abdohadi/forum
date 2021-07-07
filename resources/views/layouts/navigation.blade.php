@@ -39,6 +39,10 @@
                                                 {{ __('My Threads') }}
                                             </x-nav-link>
                                         @endif
+
+                                        <x-nav-link :href="route('threads.index', ['popular' => 1])" class="text-lg">
+                                            {{ __('Popular Threads') }}
+                                        </x-nav-link>
                                     </li>
                                 </ul>
                             </x-slot>
