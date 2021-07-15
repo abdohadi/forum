@@ -12,6 +12,10 @@
 	@apply bg-white py-2 px-5 border-gray-400 border rounded-2xl text-gray-600 hover:text-gray-400;
 }
 
+.disabled-btn {
+	@apply bg-white py-2 px-5 border-gray-300 border rounded-2xl text-gray-400 cursor-not-allowed;
+}
+
 .ul-errors {
 	@apply mt-5 bg-red-300 text-red-900 py-3 px-8;
 }
