@@ -12,7 +12,7 @@
                         @csrf 
 
                         <button class="{{ $reply->isFavorited() ? 'disabled' : 'white' }}-btn" type="submit" {{ $reply->isFavorited() ? 'disabled' : '' }}>
-                            <span class="text-sm">{{ $reply->favorites()->count() }}</span> Favorite
+                            <span class="text-sm">{{ $reply->favorites_count }}</span> Favorite
                         </button>
                     </form>
                 </div>

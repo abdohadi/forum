@@ -2,37 +2,28 @@
 
 namespace App\Models;
 
+use App\Favoritable;
 use App\Models\Favorite;
+use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    use HasFactory;
+    use HasFactory, Favoritable;
 
     protected $fillable = ['body', 'user_id'];
+
+    protected $with = ['owner', 'favorites'];
 
     public function owner()
     {
     	return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function favorites()
+    public function thread()
     {
-        return $this->morphMany(Favorite::class, 'favorited');
-    }
-
-    public function favorite()
-    {
-        $attributes = ['user_id' => auth()->id()];
-        
-        if (! $this->favorites()->where($attributes)->exists())
-            $this->favorites()->create($attributes);
-    }
-
-    public function isFavorited()
-    {
-        return $this->favorites()->where('user_id', auth()->id())->exists();
+        return $this->belongsTo(Thread::class);
     }
 }
