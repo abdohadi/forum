@@ -3,6 +3,7 @@
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,8 @@ Route::get('threads/{channel:slug}', [ThreadController::class, 'index'])->name('
 
 Route::resource('threads.replies', ReplyController::class);
 Route::post('replies/{reply}/favorite', [FavoriteController::class, 'store'])->name('replies.favorite');
+
+Route::get('profiles/{user:name}', [ProfileController::class, 'show'])->name('profile');
+
 
 require __DIR__.'/auth.php';

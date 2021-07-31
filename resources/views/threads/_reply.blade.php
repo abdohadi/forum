@@ -4,7 +4,7 @@
             <article>
                 <div class="flex">
                     <h3>
-                        <a class="mb-2 text-blue-400" href="#">{{ $reply->owner->name }}</a> said
+                        <a class="mb-2 text-blue-400" href="{{ route('profile', $reply->owner) }}">{{ $reply->owner->name }}</a> said
                         <span class="text-sm">{{ $reply->created_at->diffForHumans() }}...</span>
                     </h3>
 

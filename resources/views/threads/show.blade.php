@@ -10,9 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-10">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <article class="py-4">
-                        <a class="mb-2" href="#">{{ $thread->creator->name }}</a> posted:
+                        <a class="mb-2" href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
                         <h3 class="font-bold text-lg mb-2 inline">{{ $thread->title }}</h3>
-                        <div>{{ $thread->body }}</div>
+                        <div class="mt-4">{{ $thread->body }}</div>
                     </article>
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <div class="max-w-7xl sm:px-6 lg:px-8 w-2/6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-10">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    This thread was published <span class="text-sm">{{ $thread->created_at->diffForHumans() }}</span> by <a href="#">{{ $thread->creator->name }}</a> and has <span class="text-sm">{{ $thread->replies_count }} comment/s</span>
+                    This thread was published <span class="text-sm">{{ $thread->created_at->diffForHumans() }}</span> by <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> and has <span class="text-sm">{{ $thread->replies_count }} comment/s</span>
                 </div>
             </div>
         </div>
