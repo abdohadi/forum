@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Reply;
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\DatabaseTest;
 
@@ -68,6 +68,34 @@ class CreateThreadsTest extends DatabaseTest
 
         $this->publishThread(['channel_id' => null])
             ->assertSessionHasErrors('channel_id');
+    }
+
+    /** @test */
+    public function unauthorized_users_cannot_delete_threads()
+    {
+        $this->withExceptionHandling();
+        $thread = Thread::factory()->create();
+
+        $this->delete(route('threads.destroy', $thread))
+            ->assertRedirect(route('login'));
+
+        $this->signIn();
+        $this->delete(route('threads.destroy', $thread))
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function authorized_users_can_only_delete_their_threads()
+    {
+        $user = $this->signIn();
+        $thread = Thread::factory()->create(['user_id' => $user->id]);
+        $reply = Reply::factory()->create(['thread_id' => $thread->id]);
+        
+        $this->json('DELETE', route('threads.destroy', $thread))
+            ->assertStatus(204);
+
+        $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
+        $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
     }
 
     public function publishThread($overrides = [])

@@ -10,8 +10,22 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-10">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <article class="py-4">
-                        <a class="mb-2" href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
-                        <h3 class="font-bold text-lg mb-2 inline">{{ $thread->title }}</h3>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <a class="mb-2" href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
+                                <h3 class="font-bold text-lg mb-2 inline">{{ $thread->title }}</h3>
+                            </div>
+
+                            @can ('update', $thread)
+                                <form action="{{ route('threads.destroy', $thread) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="text-red-500">Delete</button>
+                                </form>
+                            @endcan
+                        </div>
+
                         <div class="mt-4">{{ $thread->body }}</div>
                     </article>
                 </div>
