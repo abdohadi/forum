@@ -17,7 +17,7 @@ class ParticipateInThreadsTest extends DatabaseTest
             
         $this->withExceptionHandling()
              ->post(route('threads.replies.store', $thread), [])
-             ->assertRedirect('login');
+             ->assertRedirect(route('login'));
     }
 
     /** @test */

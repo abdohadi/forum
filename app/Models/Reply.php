@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
-use App\Favoritable;
+use App\Models\Activity;
 use App\Models\Favorite;
 use App\Models\Thread;
 use App\Models\User;
+use App\Traits\Favoritable;
+use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    use HasFactory, Favoritable;
+    use HasFactory, Favoritable, RecordsActivity;
 
     protected $fillable = ['body', 'user_id'];
 
@@ -25,5 +27,10 @@ class Reply extends Model
     public function thread()
     {
         return $this->belongsTo(Thread::class);
+    }
+
+    public function activities()
+    {
+        return $this->morphMany(Activity::class, 'subject');
     }
 }

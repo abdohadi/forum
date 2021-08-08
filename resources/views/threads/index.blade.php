@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @foreach ($threads as $thread)
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6 border border-gray-300">
                     <div class="py-6 px-6 bg-white">
                         <article>
                             <div class="flex border-b">

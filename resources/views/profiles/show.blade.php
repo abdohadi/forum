@@ -12,7 +12,7 @@
         <div class="py-12 flex">
             <div class="max-w-7xl sm:px-6 lg:px-8 w-full">
                 @foreach ($threads as $thread)
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-10">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6 border border-gray-300">
                         <div class="p-6 bg-white border-b border-gray-200 flex">
                             <article class="py-4 w-full">
                                 <div class="flex items-center justify-between">
