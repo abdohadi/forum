@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Activity;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -96,6 +97,7 @@ class CreateThreadsTest extends DatabaseTest
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
+        $this->assertEquals(0, Activity::count());
     }
 
     public function publishThread($overrides = [])

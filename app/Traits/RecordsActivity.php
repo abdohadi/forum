@@ -8,14 +8,18 @@ trait RecordsActivity
 	{
 		if (auth()->guest()) return;
 
-		foreach (static::getActivitiesToRecord() as $event) {
+		foreach (static::getActivityEvents() as $event) {
 	        static::created(function ($model) use ($event) {
 	            $model->recordActivity($event);
 	        });
 		}
+
+		static::deleting(function ($model) {
+			$model->activities()->delete();
+		});
 	}
 
-	protected static function getActivitiesToRecord()
+	protected static function getActivityEvents()
 	{
 		return ['created'];
 	}
