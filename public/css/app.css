@@ -32156,7 +32156,12 @@ select {
 
 a {
   --tw-text-opacity: 1;
-  color: rgba(96, 165, 250, var(--tw-text-opacity))
+  color: rgba(96, 165, 250, var(--tw-text-opacity));
+}
+
+body {
+  --tw-text-opacity: 1;
+  color: rgba(75, 85, 99, var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {

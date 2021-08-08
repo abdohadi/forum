@@ -7,6 +7,7 @@ use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\DatabaseTest;
+use Carbon\Carbon;
 
 class ActivityTest extends DatabaseTest
 {
@@ -34,5 +35,24 @@ class ActivityTest extends DatabaseTest
         $reply = Reply::factory()->create();
 
         $this->assertEquals(2, Activity::count());
+    }
+
+    /** @test */
+    public function it_fetches_a_feed_for_any_user()
+    {
+        $user = $this->signIn();
+        Thread::factory(2)->create(['user_id' => $user->id]);
+
+        $user->activities()->first()->update(['created_at' => Carbon::now()->subWeek()]);
+
+        $feed = Activity::feed($user);
+
+        $this->assertTrue($feed->keys()->contains(
+            Carbon::now()->format('Y-m-d')
+        ));
+
+        $this->assertTrue($feed->keys()->contains(
+            Carbon::now()->subWeek()->format('Y-m-d')
+        ));
     }
 }

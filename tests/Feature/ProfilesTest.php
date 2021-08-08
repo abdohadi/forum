@@ -21,7 +21,7 @@ class ProfilesTest extends DatabaseTest
     /** @test */
     public function profiles_display_all_threads_created_by_the_associated_user()
     {
-        $user = User::factory()->create();
+        $user = $this->signIn();
         $thread = Thread::factory()->create(['user_id' => $user->id]);
 
         $this->get(route('profile', $user))

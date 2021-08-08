@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Activity;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -11,7 +12,7 @@ class ProfileController extends Controller
     {
         return view('profiles.show', [
             'profileUser' => $user,
-            'threads' => $user->threads()->paginate(20)
+            'activities' => Activity::feed($user)
         ]);
     }
 }

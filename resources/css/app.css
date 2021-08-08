@@ -21,5 +21,10 @@
 }
 
 a {
-	@apply text-blue-400
+	@apply text-blue-400;
+}
+
+
+body {
+	@apply text-gray-600;
 }
