@@ -62,7 +62,9 @@ class ThreadController extends Controller
             'body' => $request->body
         ]);
 
-        return redirect()->route('threads.show', [$thread->channel, $thread]);
+        return redirect()
+            ->route('threads.show', [$thread->channel, $thread])
+            ->with('flash', 'Your thread has been published.');
     }
 
     /**
