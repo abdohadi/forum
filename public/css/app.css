@@ -32175,6 +32175,33 @@ select {
   color: rgba(156, 163, 175, var(--tw-text-opacity));
 }
 
+.btn {
+  border-radius: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-danger {
+  --tw-bg-opacity: 1;
+  background-color: rgba(252, 165, 165, var(--tw-bg-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+
+.btn-danger:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
+}
+
+.btn-danger {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .ul-errors {
   margin-top: 1.25rem;
   --tw-bg-opacity: 1;

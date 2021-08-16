@@ -18,6 +18,19 @@
                 </div>
 
                 <div>{{ $reply->body }}</div>
+
+                <hr class="mt-4">
+
+                <div class="pt-2">
+                    @can ('update', $reply)
+                        <form action="{{ route('replies.destroy', $reply) }}" method="POST" class="flex justify-end">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    @endcan
+                </div>
             </article>
         </div>
     </div>
