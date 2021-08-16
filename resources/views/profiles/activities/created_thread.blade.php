@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
     @slot('heading')
         <strong>{{ $profileUser->name }}</strong> published 
-        <a href="{{ route('threads.show', [$activity->subject->channel, $activity->subject]) }}">
+        <a href="{{ $activity->subject->route() }}">
             <h3 class="font-bold inline">"{{ $activity->subject->title }}"</h3>
         </a>
     @endslot

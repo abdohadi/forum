@@ -33,4 +33,9 @@ class Reply extends Model
     {
         return $this->morphMany(Activity::class, 'subject');
     }
+
+    public function route()
+    {
+        return $this->thread->route() . '#reply-' . $this->id;
+    }
 }

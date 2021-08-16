@@ -65,5 +65,10 @@ class Thread extends Model
     {
         return $filters->apply($query);
     }
+
+    public function route()
+    {
+        return route('threads.show', [$this->channel, $this]);
+    }
 }
 

@@ -10,6 +10,6 @@ import Flash from './components/Flash.vue';
 
 app.component('flash', Flash);
 
-app.mount('#app')
+app.mount('#app');
 
 require('./helpers');

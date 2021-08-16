@@ -17,24 +17,26 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div id="app" class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+            <div id="app">
+                <!-- Page Heading -->
+                @if (isset($header))
+                    <header class="bg-white shadow">
+                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
 
-            <!-- Page Content -->
-            <main class="mb-24">
-                {{ $slot }}
-            </main>
+                <!-- Page Content -->
+                <main class="mb-24">
+                    {{ $slot }}
+                </main>
 
-            <flash message="{{ session('flash') }}"></flash>
+                <flash message="{{ session('flash') }}"></flash>
+            </div>
         </div>
     </body>
 </html>

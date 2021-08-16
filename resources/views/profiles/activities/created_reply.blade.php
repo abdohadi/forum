@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
     @slot('heading')
         <strong>{{ $profileUser->name }}</strong> replied to 
-        <a href="{{ route('threads.show', [$activity->subject->thread->channel, $activity->subject->thread]) }}">
+        <a href="{{ $activity->subject->route() }}">
             <h3 class="font-bold inline">"{{ $activity->subject->thread->title }}"</h3>
         </a>
     @endslot
