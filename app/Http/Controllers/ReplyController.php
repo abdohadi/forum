@@ -36,4 +36,17 @@ class ReplyController extends Controller
 
     	return back();
     }
+
+    public function update(Reply $reply)
+    {
+        try {
+            $this->authorize('update', $reply);
+
+            $reply->update(request(['body']));
+
+            return response(['isSuccessful' => true], 200);
+        } catch (\Exception $e) {
+            return response(['isSuccessful' => false, 500]);
+        }
+    }
 }

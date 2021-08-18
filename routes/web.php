@@ -25,7 +25,8 @@ Route::get('threads/{channel:slug}/{thread}', [ThreadController::class, 'show'])
 Route::resource('threads', ThreadController::class)->except('show');
 Route::get('threads/{channel:slug}', [ThreadController::class, 'index'])->name('threads.channel');
 
-Route::resource('threads.replies', ReplyController::class)->except('destroy');
+Route::resource('threads.replies', ReplyController::class)->except(['destroy', 'update']);
+Route::patch('replies/{reply}', [ReplyController::class, 'update'])->name('replies.update');
 Route::delete('replies/{reply}', [ReplyController::class, 'destroy'])->name('replies.destroy');
 Route::post('replies/{reply}/favorite', [FavoriteController::class, 'store'])->name('replies.favorite');
 

@@ -72,4 +72,33 @@ class ParticipateInThreadsTest extends DatabaseTest
 
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
     }
+
+    /** @test */
+    public function unauthorized_users_cannot_update_a_reply()
+    {
+        $this->withExceptionHandling();
+
+        $reply = Reply::factory()->create();
+
+        $attributes = ['body' => 'updated'];
+        $this->patch(route('replies.update', $reply), $attributes)
+            ->assertRedirect(route('login'));
+
+        $this->signIn();
+
+        $this->patch(route('replies.update', $reply), $attributes)
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function authorized_users_can_update_replies()
+    {
+        $reply = Reply::factory()->create();
+        $this->signIn($reply->owner);
+        
+        $this->patch(route('replies.update', $reply), ['body' => 'updated body'])
+            ->assertJson(['isSuccessful' => true]);
+
+        $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => 'updated body']);
+    }
 }

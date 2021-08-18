@@ -20,8 +20,20 @@
 	@apply py-1 px-2 text-white rounded;
 }
 
+.btn-primary {
+	@apply mr-1 btn bg-blue-300 bg-blue-500 hover:bg-blue-600;
+}
+
 .btn-danger {
 	@apply bg-red-300 text-sm bg-red-500 hover:bg-red-600;
+}
+
+.btn-normal {
+	@apply text-sm text-gray-600 rounded border border-gray-300 px-2 bg-gray-100 hover:bg-gray-200;
+}
+
+.btn-trans {
+	@apply text-sm border border-gray-200 rounded border-gray-300 text-gray-500 hover:bg-gray-100 px-2 py-1;
 }
 
 .ul-errors {
@@ -32,7 +44,10 @@ a {
 	@apply text-blue-400;
 }
 
-
 body {
 	@apply text-gray-600;
 }
+
+input, textarea {
+	@apply w-full mt-2 border border-gray-200 focus:border-blue-200 rounded;
+} 
